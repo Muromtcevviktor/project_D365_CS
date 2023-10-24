@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D365.Plugins", "D365.Plugins\D365.Plugins.csproj", "{A4E3E103-4C95-4A8B-90B4-BE6D9215A443}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "D365.Plugins", "D365.Plugins\D365.Plugins.csproj", "{A4E3E103-4C95-4A8B-90B4-BE6D9215A443}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D365.Tests", "D365.Tests\D365.Tests.csproj", "{6F15FD4E-1623-4538-ADCE-141372F760BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{A4E3E103-4C95-4A8B-90B4-BE6D9215A443}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4E3E103-4C95-4A8B-90B4-BE6D9215A443}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4E3E103-4C95-4A8B-90B4-BE6D9215A443}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F15FD4E-1623-4538-ADCE-141372F760BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F15FD4E-1623-4538-ADCE-141372F760BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F15FD4E-1623-4538-ADCE-141372F760BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F15FD4E-1623-4538-ADCE-141372F760BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
