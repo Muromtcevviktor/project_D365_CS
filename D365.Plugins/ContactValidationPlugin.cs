@@ -1,13 +1,14 @@
 ﻿using D365.Plugins.Abstracts;
+using D365.Plugins.Services;
 using System;
 
-namespace D365.Plugins.Services
+namespace D365.Plugins
 {
     //How to develop plugins - clean code
     public class ContactValidationPlugin : PluginBase
     {
         private Func<BasePluginService> ValidationServiceFactory;
-        
+
         public ContactValidationPlugin()
         {
             RegisteredEvents.Add(new PluginEvent()
