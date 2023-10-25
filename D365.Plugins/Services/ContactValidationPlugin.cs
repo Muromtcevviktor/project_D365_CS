@@ -21,7 +21,7 @@ namespace D365.Plugins.Services
             {
                 Message = "Create",
                 Stage = EventPipeline.PreValidation,
-                ToExecute = OnUpdate
+                ToExecute = OnCreate
             });
 
             ValidationServiceFactory = () => new ContactValidationService(OrganizationServiceFactory, TracingService);
