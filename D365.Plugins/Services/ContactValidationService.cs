@@ -10,7 +10,7 @@ namespace D365.Plugins.Services
 {
     public class ContactValidationService : BasePluginService
     {
-        public ContactValidationService(IOrganizationService organizationService, ITracingService tracingService) : base(organizationService, tracingService)
+        public ContactValidationService(Lazy<IOrganizationServiceFactory> organizationServiceFactory, ITracingService tracingService) : base(organizationServiceFactory, tracingService)
         {
         }
 

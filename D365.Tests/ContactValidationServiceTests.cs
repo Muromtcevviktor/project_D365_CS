@@ -12,9 +12,9 @@ namespace D365.Tests
 
         public ContactValidationServiceTests()
         {
-            Mock<IOrganizationService> orgServiceMock = new Mock<IOrganizationService>();
+            Mock<IOrganizationServiceFactory> orgServiceMock = new Mock<IOrganizationServiceFactory>();
             Mock<ITracingService> tracingServiceMock = new Mock<ITracingService>();
-            _sut = new ContactValidationService(orgServiceMock.Object, tracingServiceMock.Object);
+            _sut = new ContactValidationService(new Lazy<IOrganizationServiceFactory>(()=>orgServiceMock.Object), tracingServiceMock.Object);
         }
 
         [Fact]

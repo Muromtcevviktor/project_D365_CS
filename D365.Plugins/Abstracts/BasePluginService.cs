@@ -1,21 +1,17 @@
 ﻿using Microsoft.Xrm.Sdk;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace D365.Plugins.Abstracts
 {
     public abstract class BasePluginService
     {
-        public BasePluginService(IOrganizationService organizationService, ITracingService tracingService)
+        public BasePluginService(Lazy<IOrganizationServiceFactory> organizationService, ITracingService tracingService)
         {
-            this.OrganizationService = organizationService;
+            this.OrganizationServiceFactory = organizationService;
             TracingService = tracingService;
         }
 
-        protected IOrganizationService OrganizationService { get; set; }
+        protected Lazy<IOrganizationServiceFactory> OrganizationServiceFactory { get; set; }
 
         protected ITracingService TracingService { get; set; }
 

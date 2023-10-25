@@ -3,6 +3,7 @@ using System;
 
 namespace D365.Plugins
 {
+    //How to not develop plugins (dirty approach)
     public class DemoPlugin : IPlugin
     {
         ITracingService _tracingService;
