@@ -7,13 +7,19 @@ namespace D365.Plugins
     //How to develop plugins - clean code
     public class ContactValidationPlugin : PluginBase
     {
-        private Func<BasePluginService> ValidationServiceFactory;
+        public ContactValidationPlugin(Func<BasePluginService> baseServiceFactory)
+            :this()
+        {
+           
+            ValidationServiceFactory = baseServiceFactory;
+        }
 
         public ContactValidationPlugin()
         {
             RegisteredEvents.Add(new PluginEvent()
             {
                 Message = "Update",
+                EntityName = "Contact",
                 Stage = EventPipeline.PreValidation,
                 ToExecute = OnUpdate
             });
@@ -21,11 +27,10 @@ namespace D365.Plugins
             RegisteredEvents.Add(new PluginEvent()
             {
                 Message = "Create",
+                EntityName = "Contact",
                 Stage = EventPipeline.PreValidation,
                 ToExecute = OnCreate
             });
-
-            ValidationServiceFactory = () => new ContactValidationService(OrganizationServiceFactory, TracingService);
         }
 
         public void OnUpdate()
@@ -36,6 +41,11 @@ namespace D365.Plugins
         public void OnCreate()
         {
             ValidationServiceFactory().Execute(ExecutionContext);
+        }
+
+        protected override void InitializeDependencies()
+        {
+            ValidationServiceFactory = ValidationServiceFactory ?? new Func<BasePluginService>(() => new ContactValidationService(OrganizationServiceFactory, TracingService));
         }
     }
 }

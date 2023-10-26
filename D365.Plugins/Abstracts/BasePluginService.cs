@@ -5,6 +5,8 @@ namespace D365.Plugins.Abstracts
 {
     public abstract class BasePluginService
     {
+        public BasePluginService() { }
+
         public BasePluginService(Lazy<IOrganizationServiceFactory> organizationService, ITracingService tracingService)
         {
             this.OrganizationServiceFactory = organizationService;
@@ -16,5 +18,7 @@ namespace D365.Plugins.Abstracts
         protected ITracingService TracingService { get; set; }
 
         public abstract void Execute(IPluginExecutionContext executionContext);
+
+
     }
 }

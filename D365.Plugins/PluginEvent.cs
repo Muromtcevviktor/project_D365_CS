@@ -5,6 +5,8 @@ namespace D365.Plugins
     {
         public string Message { get; set; }
 
+        public string EntityName { get; set; }
+
         public EventPipeline Stage { get; set; }
 
         public Action ToExecute { get; set; }

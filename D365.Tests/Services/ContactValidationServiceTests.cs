@@ -4,7 +4,7 @@ using Moq;
 using System;
 using Xunit;
 
-namespace D365.Tests
+namespace D365.Tests.Services
 {
     public class ContactValidationServiceTests
     {
@@ -14,7 +14,7 @@ namespace D365.Tests
         {
             Mock<IOrganizationServiceFactory> orgServiceMock = new Mock<IOrganizationServiceFactory>();
             Mock<ITracingService> tracingServiceMock = new Mock<ITracingService>();
-            _sut = new ContactValidationService(new Lazy<IOrganizationServiceFactory>(()=>orgServiceMock.Object), tracingServiceMock.Object);
+            _sut = new ContactValidationService(new Lazy<IOrganizationServiceFactory>(() => orgServiceMock.Object), tracingServiceMock.Object);
         }
 
         [Fact]
@@ -23,7 +23,7 @@ namespace D365.Tests
             Entity contactEntity = new Entity("contact", Guid.NewGuid());
 
             contactEntity["firstname"] = "John 2"; // first name contains digits !
-           
+
 
             ParameterCollection inputParameters = new ParameterCollection();
 
@@ -44,7 +44,7 @@ namespace D365.Tests
             Entity contactEntity = new Entity("contact", Guid.NewGuid());
 
             contactEntity["lastname"] = "Smith 2"; //last name contains digits !
-            
+
             ParameterCollection inputParameters = new ParameterCollection();
 
             inputParameters.Add("Target", contactEntity);

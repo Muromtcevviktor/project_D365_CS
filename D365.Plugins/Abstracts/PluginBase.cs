@@ -15,6 +15,8 @@ namespace D365.Plugins.Abstracts
             RegisteredEvents = new List<PluginEvent>();
         }
 
+        protected Func<BasePluginService> ValidationServiceFactory { get; set; }
+
         protected ITracingService TracingService { get; set; }
 
         protected IPluginExecutionContext ExecutionContext { get; set; }
@@ -39,14 +41,15 @@ namespace D365.Plugins.Abstracts
 
             string message = ExecutionContext.MessageName;
             int stage = ExecutionContext.Stage;
+            string entityName = ExecutionContext.PrimaryEntityName;
 
             TracingService.Trace($"{this.GetType().FullName} is getting triggered on {message} and {((EventPipeline)stage).ToString()}");
 
-            var eventsToHandle = RegisteredEvents.Where(e => e.Message == message && stage == (int)e.Stage).ToList();
+            var eventsToHandle = RegisteredEvents.Where(e => e.Message == message && stage == (int)e.Stage && e.EntityName == entityName).ToList();
 
             if (!eventsToHandle.Any())
             {
-                TracingService.Trace($"{this.GetType().FullName} could not match any registered plugin events for given {message} - {stage}");
+                TracingService.Trace($"{this.GetType().FullName} could not match any registered plugin events for given {message} - {stage} - for entity {entityName}");
             }
 
             foreach (var @event in eventsToHandle)
@@ -58,6 +61,8 @@ namespace D365.Plugins.Abstracts
                     try
                     {
                         TracingService.Trace($"{this.GetType().FullName} executing on {message} and {((EventPipeline)stage).ToString()}");
+
+                        this.InitializeDependencies();
 
                         @event.ToExecute();
 
@@ -75,5 +80,7 @@ namespace D365.Plugins.Abstracts
                 }
             }
         }
+
+        protected abstract void InitializeDependencies();
     }
 }

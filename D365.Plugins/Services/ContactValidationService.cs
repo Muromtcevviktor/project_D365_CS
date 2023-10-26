@@ -1,10 +1,6 @@
 ﻿using D365.Plugins.Abstracts;
 using Microsoft.Xrm.Sdk;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace D365.Plugins.Services
 {
@@ -59,7 +55,6 @@ namespace D365.Plugins.Services
 
         protected bool ValidateFirstName(string firstName)
         {
-            //TODO:name cannot contains digits
             foreach (char c in firstName)
             {
                 if (char.IsDigit(c))
@@ -72,7 +67,6 @@ namespace D365.Plugins.Services
 
         protected bool ValidateLastName(string lastName)
         {
-            //TODO:last name cannot contains digits
             foreach (char c in lastName)
             {
                 if (char.IsDigit(c))
@@ -85,7 +79,6 @@ namespace D365.Plugins.Services
 
         protected bool ValidatePhoneNumber(string phoneNumber)
         {
-            //TODO:check if phone number starts with country code prefix
             if (phoneNumber.StartsWith("+48"))
             {
                 return true;
