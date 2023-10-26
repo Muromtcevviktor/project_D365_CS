@@ -80,7 +80,7 @@ namespace D365.Tests
         {
             Entity contactEntity = new Entity("contact", Guid.NewGuid());
 
-            contactEntity["telephone1"] = "48 123 456 789"; //missing country code prefix !
+            contactEntity["telephone1"] = "+48 123 456 789"; //missing country code prefix !
 
             ParameterCollection inputParameters = new ParameterCollection();
 

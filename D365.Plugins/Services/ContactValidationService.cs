@@ -27,7 +27,7 @@ namespace D365.Plugins.Services
             bool isValid = false;
             if (contactEntity.Contains("firstname"))
             {
-                isValid &= ValidateFirstName(contactEntity.GetAttributeValue<string>("firstname"));
+                isValid = ValidateFirstName(contactEntity.GetAttributeValue<string>("firstname"));
 
                 if (!isValid)
                 {
@@ -37,7 +37,7 @@ namespace D365.Plugins.Services
 
             if (contactEntity.Contains("lastname"))
             {
-                isValid &= ValidateLastName(contactEntity.GetAttributeValue<string>("lastname"));
+                isValid = ValidateLastName(contactEntity.GetAttributeValue<string>("lastname"));
 
                 if (!isValid)
                 {
@@ -48,7 +48,7 @@ namespace D365.Plugins.Services
             if (contactEntity.Contains("telephone1"))
             {
 
-                isValid &= ValidatePhoneNumber(contactEntity.GetAttributeValue<string>("telephone1"));
+                isValid = ValidatePhoneNumber(contactEntity.GetAttributeValue<string>("telephone1"));
 
                 if (!isValid)
                 {
@@ -60,18 +60,36 @@ namespace D365.Plugins.Services
         protected bool ValidateFirstName(string firstName)
         {
             //TODO:name cannot contains digits
-            throw new NotImplementedException();
+            foreach (char c in firstName)
+            {
+                if (char.IsDigit(c))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         protected bool ValidateLastName(string lastName)
         {
             //TODO:last name cannot contains digits
-            throw new NotImplementedException();
+            foreach (char c in lastName)
+            {
+                if (char.IsDigit(c))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         protected bool ValidatePhoneNumber(string phoneNumber)
         {
             //TODO:check if phone number starts with country code prefix
+            if (phoneNumber.StartsWith("+48"))
+            {
+                return true;
+            }
             return false;
         }
     }
